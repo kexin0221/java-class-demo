@@ -15,7 +15,7 @@ public class Test {
 		String s=list.get(0);
 		
 		ArrayList[] ll=new ArrayList[10];
-		ArrayList<String>[] lll =new ArrayList<String>[10];
+		ArrayList<String>[] lll = new ArrayList[10];
 		
 //		ArrayList<String>[] list1 =new ArrayList<String>[10];
 //		ArrayList<int> intList =new ArrayList<int>();
