@@ -20,9 +20,7 @@ public class Test201 {
         ArrayList<String> words = new ArrayList<String>();
         ArrayList<String> allWords = new ArrayList<String>();
         // Create a Scanner for the file
-        Scanner input = null;
-        try {
-            input = new Scanner(file);
+        try (Scanner input = new Scanner(file)) {
 
             // Read data from a file
             while (input.hasNext()) {
@@ -37,14 +35,12 @@ public class Test201 {
             System.out.println(words);
             Collections.sort(words);
             System.out.println(words);
-            Collections.sort(words,Collections.reverseOrder());
+            words.sort(Collections.reverseOrder());
             System.out.println(words);
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } finally {
-            input.close();
         }
 
     }

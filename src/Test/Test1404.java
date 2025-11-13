@@ -36,18 +36,14 @@ public class Test1404 extends Application {
 			label.setTextFill(c);
 			pane.getChildren().add(label);
 		}
-
-
 		Scene scene = new Scene(pane, 360, 150);
 		primaryStage.setTitle("ShowImage"); // Set the stage title
 		primaryStage.setScene(scene); // Place the scene in the stage
 		primaryStage.show(); // Display the stage
-
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
 	}
-
 }
