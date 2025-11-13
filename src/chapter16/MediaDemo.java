@@ -16,58 +16,55 @@ import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
 public class MediaDemo extends Application {
-  private static final String MEDIA_URL = 
-    "http://cs.armstrong.edu/liang/common/sample.mp4";
+    private static final String MEDIA_URL = "https://cs.armstrong.edu/liang/common/sample.mp4";
 
-  @Override // Override the start method in the Application class
-  public void start(Stage primaryStage) {
-    Media media = new Media(MEDIA_URL);
-    MediaPlayer mediaPlayer = new MediaPlayer(media);
-    MediaView mediaView = new MediaView(mediaPlayer);
+    @Override // Override the start method in the Application class
+    public void start(Stage primaryStage) {
+        Media media = new Media(MEDIA_URL);
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        MediaView mediaView = new MediaView(mediaPlayer);
 
-    Button playButton = new Button(">");
-    playButton.setOnAction(e -> {
-      if (playButton.getText().equals(">")) {
-        mediaPlayer.play();
-        playButton.setText("||");
-      } else {
-        mediaPlayer.pause();
-        playButton.setText(">");
-      }
-    });
+        Button playButton = new Button(">");
+        playButton.setOnAction(e -> {
+            if (playButton.getText().equals(">")) {
+                mediaPlayer.play();
+                playButton.setText("||");
+            } else {
+                mediaPlayer.pause();
+                playButton.setText(">");
+            }
+        });
 
-    Button rewindButton = new Button("<<");
-    rewindButton.setOnAction(e -> mediaPlayer.seek(Duration.ZERO));
-    
-    Slider slVolume = new Slider();
-    slVolume.setPrefWidth(150);
-    slVolume.setMaxWidth(Region.USE_PREF_SIZE);
-    slVolume.setMinWidth(30);
-    slVolume.setValue(50);
-    mediaPlayer.volumeProperty().bind(
-      slVolume.valueProperty().divide(100));
+        Button rewindButton = new Button("<<");
+        rewindButton.setOnAction(e -> mediaPlayer.seek(Duration.ZERO));
 
-    HBox hBox = new HBox(10);
-    hBox.setAlignment(Pos.CENTER);
-    hBox.getChildren().addAll(playButton, rewindButton,
-      new Label("Volume"), slVolume);
+        Slider slVolume = new Slider();
+        slVolume.setPrefWidth(150);
+        slVolume.setMaxWidth(Region.USE_PREF_SIZE);
+        slVolume.setMinWidth(30);
+        slVolume.setValue(50);
+        mediaPlayer.volumeProperty().bind(slVolume.valueProperty().divide(100));
 
-    BorderPane pane = new BorderPane();
-    pane.setCenter(mediaView);
-    pane.setBottom(hBox);
+        HBox hBox = new HBox(10);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.getChildren().addAll(playButton, rewindButton, new Label("Volume"), slVolume);
 
-    // Create a scene and place it in the stage
-    Scene scene = new Scene(pane, 650, 500);
-    primaryStage.setTitle("MediaDemo"); // Set the stage title
-    primaryStage.setScene(scene); // Place the scene in the stage
-    primaryStage.show(); // Display the stage    
-  }
+        BorderPane pane = new BorderPane();
+        pane.setCenter(mediaView);
+        pane.setBottom(hBox);
 
-  /**
-   * The main method is only needed for the IDE with limited
-   * JavaFX support. Not needed for running from the command line.
-   */
-  public static void main(String[] args) {
-    launch(args);
-  }
+        // Create a scene and place it in the stage
+        Scene scene = new Scene(pane, 650, 500);
+        primaryStage.setTitle("MediaDemo"); // Set the stage title
+        primaryStage.setScene(scene); // Place the scene in the stage
+        primaryStage.show(); // Display the stage
+    }
+
+    /**
+     * The main method is only needed for the IDE with limited
+     * JavaFX support. Not needed for running from the command line.
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
