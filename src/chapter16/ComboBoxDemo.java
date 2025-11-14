@@ -17,14 +17,14 @@ public class ComboBoxDemo extends Application {
             "United States of America"};
 
     // Declare an ImageView array for the national flags of 9 countries
-    private final ImageView[] flagImage = {new ImageView("image/ca.gif"),
-            new ImageView("image/china.gif"),
-            new ImageView("image/denmark.gif"),
-            new ImageView("image/fr.gif"),
-            new ImageView("image/germany.gif"),
-            new ImageView("image/india.gif"),
-            new ImageView("image/norway.gif"),
-            new ImageView("image/uk.gif"), new ImageView("image/us.gif")};
+    private final ImageView[] flagImage = {new ImageView("file:image/ca.gif"),
+            new ImageView("file:image/china.gif"),
+            new ImageView("file:image/denmark.gif"),
+            new ImageView("file:image/fr.gif"),
+            new ImageView("file:image/germany.gif"),
+            new ImageView("file:image/india.gif"),
+            new ImageView("file:image/norway.gif"),
+            new ImageView("file:image/uk.gif"), new ImageView("file:image/us.gif")};
 
     // Declare an array of strings for flag descriptions
     private final String[] flagDescription = new String[9];
@@ -61,8 +61,7 @@ public class ComboBoxDemo extends Application {
         cbo.setPrefWidth(400);
         cbo.setValue("Canada");
 
-        ObservableList<String> items =
-                FXCollections.observableArrayList(flagTitles);
+        ObservableList<String> items = FXCollections.observableArrayList(flagTitles);
         cbo.getItems().addAll(items);
         pane.setCenter(descriptionPane);
 

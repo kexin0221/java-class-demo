@@ -17,7 +17,7 @@ import javafx.scene.shape.Ellipse;
 public class LabelWithGraphic extends Application {
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
-        ImageView us = new ImageView(new Image("image/us.gif"));
+        ImageView us = new ImageView(new Image("file:image/us.gif"));
         Label lb1 = new Label("US\n50 States", us);
         lb1.setStyle("-fx-border-color: green; -fx-border-width: 2");
         lb1.setContentDisplay(ContentDisplay.BOTTOM);
