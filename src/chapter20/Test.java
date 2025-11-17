@@ -8,22 +8,22 @@ import java.util.Random;
 
 public class Test {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
 //		ArrayList<String> list1=new ArrayList<String>();
-		ArrayList list1=new ArrayList();
-		list1.add("red");
-		list1.add("yellow");
-		list1.add("green");
+        ArrayList list1=new ArrayList();
+        list1.add("red");
+        list1.add("yellow");
+        list1.add("green");
 
 //		ArrayList<String> list2=new ArrayList<String>();
-		ArrayList list2=new ArrayList();
-		list2.add("red");
-		list2.add("yellow");
-		list2.add("blue");
+        ArrayList list2=new ArrayList();
+        list2.add("red");
+        list2.add("yellow");
+        list2.add("blue");
 
 //		list1.addAll(list2);
 //		System.out.println("list1:"+list1);
@@ -47,19 +47,19 @@ public class Test {
 
 
 //		Collections example
-		List<Integer> arrayList = new ArrayList<Integer>();
-    arrayList.add(1); // 1 is autoboxed to new Integer(1)
-    arrayList.add(2);
-    arrayList.add(3);
-    arrayList.add(1);
-    arrayList.add(4);
-    arrayList.add(0, 10);
-    arrayList.add(3, 30);
+        List<Integer> arrayList = new ArrayList<Integer>();
+        arrayList.add(1); // 1 is autoboxed to new Integer(1)
+        arrayList.add(2);
+        arrayList.add(3);
+        arrayList.add(1);
+        arrayList.add(4);
+        arrayList.add(0, 10);
+        arrayList.add(3, 30);
 
-    System.out.println("A list of integers in the array list:");
-    System.out.println(arrayList);
-    Collections.sort(arrayList);
-    System.out.println(arrayList);
+        System.out.println("A list of integers in the array list:");
+        System.out.println(arrayList);
+        Collections.sort(arrayList);
+        System.out.println(arrayList);
 //
 //    System.out.println(Collections.binarySearch(arrayList, 10));
 //
@@ -89,6 +89,6 @@ public class Test {
 //		list7.remove(0);
 //		System.out.println(list7);
 
-	}
+    }
 
 }
