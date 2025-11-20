@@ -1,4 +1,4 @@
-package chapter20;
+package myCode;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-public class MultipleBounceBall extends Application {
+public class demo20_9 extends Application {
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
         MultipleBallPane ballPane = new MultipleBallPane();
@@ -60,21 +60,33 @@ public class MultipleBounceBall extends Application {
 
         public MultipleBallPane() {
             // Create an animation for moving the ball
-            animation = new Timeline(
-                    new KeyFrame(Duration.millis(50), e -> moveBall()));
+            animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall()));
             animation.setCycleCount(Timeline.INDEFINITE);
             animation.play(); // Start animation
         }
 
         public void add() {
-            Color color = new Color(Math.random(),
-                    Math.random(), Math.random(), 0.5);
-            getChildren().add(new Ball(30, 30, 20, color));
+            Color color = new Color(Math.random(), Math.random(), Math.random(), 0.5);
+            int radius = (int) (Math.random() * 19 + 2);
+            getChildren().add(new Ball(30, 30, radius, color));
         }
 
         public void subtract() {
             if (!getChildren().isEmpty()) {
-                getChildren().remove(getChildren().size() - 1);
+                Ball largestBall = null;
+                double maxRadius = 0;
+
+                for (Node node : getChildren()) {
+                    Ball ball = (Ball) node;
+                    if (ball.getRadius() > maxRadius) {
+                        maxRadius = ball.getRadius();
+                        largestBall = ball;
+                    }
+                }
+
+                if (largestBall != null) {
+                    getChildren().remove(largestBall);
+                }
             }
         }
 
@@ -136,3 +148,4 @@ public class MultipleBounceBall extends Application {
         launch(args);
     }
 }
+
