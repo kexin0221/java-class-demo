@@ -20,23 +20,20 @@ public class TestMap {
         System.out.println(treeMap);
 
         // Create a LinkedHashMap
-        Map<String, Integer> linkedHashMap =
-                new LinkedHashMap<>(16, 0.75f, true);
+        Map<String, Integer> linkedHashMap = new LinkedHashMap<>(16, 0.75f, true);
         linkedHashMap.put("Smith", 30);
         linkedHashMap.put("Anderson", 31);
         linkedHashMap.put("Lewis", 29);
         linkedHashMap.put("Cook", 29);
 
         // Display the age for Lewis
-        System.out.println("\nThe age for " + "Lewis is " +
-                linkedHashMap.get("Lewis"));
+        System.out.println("\nThe age for " + "Lewis is " + linkedHashMap.get("Lewis"));
 
         System.out.println("Display entries in LinkedHashMap");
         System.out.println(linkedHashMap);
 
         // Display each entry with name and age
         System.out.print("\nNames and ages are ");
-        treeMap.forEach(
-                (name, age) -> System.out.print(name + ": " + age + " "));
+        treeMap.forEach((name, age) -> System.out.print(name + ": " + age + " "));
     }
 }
