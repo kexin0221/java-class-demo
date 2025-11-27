@@ -8,11 +8,6 @@ public class GeometricObjectComparator implements Comparator<GeometricObject>, j
         double area1 = o1.getArea();
         double area2 = o2.getArea();
 
-        if (area1 < area2)
-            return -1;
-        else if (area1 == area2)
-            return 0;
-        else
-            return 1;
+        return Double.compare(area1, area2);
     }
 }

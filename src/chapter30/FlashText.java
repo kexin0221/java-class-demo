@@ -32,7 +32,6 @@ public class FlashText extends Application {
                                 lblText.setText(text);
                             }
                         });
-
                         Thread.sleep(200);
                     }
                 }

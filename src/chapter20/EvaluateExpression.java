@@ -6,8 +6,7 @@ public class EvaluateExpression {
     public static void main(String[] args) {
         // Check number of arguments passed
         if (args.length != 1) {
-            System.out.println(
-                    "Usage: java EvaluateExpression \"expression\"");
+            System.out.println("Usage: java EvaluateExpression \"expression\"");
             System.exit(1);
         }
 
@@ -35,7 +34,7 @@ public class EvaluateExpression {
 
         // Phase 1: Scan tokens
         for (String token: tokens) {
-            if (token.length() == 0) // Blank space
+            if (token.isEmpty()) // Blank space
                 continue; // Back to the while loop to extract the next token
             else if (token.charAt(0) == '+' || token.charAt(0) == '-') {
                 // Process all +, -, *, / in the top of the operator stack
@@ -105,17 +104,17 @@ public class EvaluateExpression {
     }
 
     public static String insertBlanks(String s) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '(' || s.charAt(i) == ')' ||
                     s.charAt(i) == '+' || s.charAt(i) == '-' ||
                     s.charAt(i) == '*' || s.charAt(i) == '/')
-                result += " " + s.charAt(i) + " ";
+                result.append(" ").append(s.charAt(i)).append(" ");
             else
-                result += s.charAt(i);
+                result.append(s.charAt(i));
         }
 
-        return result;
+        return result.toString();
     }
 }
