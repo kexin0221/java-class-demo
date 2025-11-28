@@ -17,8 +17,7 @@ public class TestIterator {
 //    System.out.println();
 
 
-        for(String element:collection)
-        {
+        for(String element:collection) {
             System.out.print(element.toUpperCase()+" ");
         }
     }

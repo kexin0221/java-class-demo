@@ -51,9 +51,7 @@ public class EvaluateExpression {
             }
             else if (token.charAt(0) == '*' || token.charAt(0) == '/') {
                 // Process all *, / in the top of the operator stack
-                while (!operatorStack.isEmpty() &&
-                        (operatorStack.peek() == '*' ||
-                                operatorStack.peek() == '/')) {
+                while (!operatorStack.isEmpty() && (operatorStack.peek() == '*' || operatorStack.peek() == '/')) {
                     processAnOperator(operandStack, operatorStack);
                 }
 
@@ -88,8 +86,7 @@ public class EvaluateExpression {
 
     /** Process one operator: Take an operator from operatorStack and
      *  apply it on the operands in the operandStack */
-    public static void processAnOperator(
-            Stack<Integer> operandStack, Stack<Character> operatorStack) {
+    public static void processAnOperator(Stack<Integer> operandStack, Stack<Character> operatorStack) {
         char op = operatorStack.pop();
         int op1 = operandStack.pop();
         int op2 = operandStack.pop();
@@ -107,8 +104,7 @@ public class EvaluateExpression {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(' || s.charAt(i) == ')' ||
-                    s.charAt(i) == '+' || s.charAt(i) == '-' ||
+            if (s.charAt(i) == '(' || s.charAt(i) == ')' || s.charAt(i) == '+' || s.charAt(i) == '-' ||
                     s.charAt(i) == '*' || s.charAt(i) == '/')
                 result.append(" ").append(s.charAt(i)).append(" ");
             else

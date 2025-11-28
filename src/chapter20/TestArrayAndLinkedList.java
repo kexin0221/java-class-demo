@@ -23,23 +23,20 @@ public class TestArrayAndLinkedList {
 
         System.out.println("Display the linked list forward:");
         ListIterator<Object> listIterator=linkedList.listIterator();
-        while(listIterator.hasNext())
-        {
+        while(listIterator.hasNext()) {
             System.out.print(listIterator.next()+" ");
         }
         System.out.println();
 
         System.out.println("Display the linked list backward:");
         listIterator=linkedList.listIterator(linkedList.size());
-        while(listIterator.hasPrevious())
-        {
+        while(listIterator.hasPrevious()) {
             System.out.print(listIterator.previous()+" ");
         }
 
         System.out.println();
         long begin1=System.currentTimeMillis();
-        for(int i=0;i<100000;i++)
-        {
+        for(int i=0;i<100000;i++) {
             linkedList.add(0,5);
         }
         System.out.println("linkedList random add: "+(System.currentTimeMillis()-begin1));
@@ -48,8 +45,7 @@ public class TestArrayAndLinkedList {
         long begin=System.currentTimeMillis();
         listIterator=linkedList.listIterator(linkedList.size());
         System.out.println("Display the linked list backward:");
-        while(listIterator.hasPrevious())
-        {
+        while(listIterator.hasPrevious()) {
             listIterator.previous();
 //    	System.out.print(listIterator.previous()+" ");
         }
@@ -77,8 +73,7 @@ public class TestArrayAndLinkedList {
         System.out.println("ArrayList random accesss: "+(System.currentTimeMillis()-begin));
 
         begin1=System.currentTimeMillis();
-        for(int i=0;i<100000;i++)
-        {
+        for(int i=0;i<100000;i++) {
             list3.add(0,5);
         }
         System.out.println("arrayList random add: "+(System.currentTimeMillis()-begin1));

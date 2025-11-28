@@ -11,19 +11,18 @@ public class PriorityQueueDemo {
         queue1.offer("Texas");
 
         System.out.println("Priority queue using Comparable:");
-        while (queue1.size() > 0) {
+        while (!queue1.isEmpty()) {
             System.out.print(queue1.remove() + " ");
         }
 
-        PriorityQueue<String> queue2 = new PriorityQueue<String>(
-                4, Collections.reverseOrder());
+        PriorityQueue<String> queue2 = new PriorityQueue<String>(4, Collections.reverseOrder());
         queue2.offer("Oklahoma");
         queue2.offer("Indiana");
         queue2.offer("Georgia");
         queue2.offer("Texas");
 
         System.out.println("\nPriority queue using Comparator:");
-        while (queue2.size() > 0) {
+        while (!queue2.isEmpty()) {
             System.out.print(queue2.remove() + " ");
         }
     }

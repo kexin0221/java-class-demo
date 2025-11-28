@@ -60,15 +60,13 @@ public class MultipleBounceBall extends Application {
 
         public MultipleBallPane() {
             // Create an animation for moving the ball
-            animation = new Timeline(
-                    new KeyFrame(Duration.millis(50), e -> moveBall()));
+            animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall()));
             animation.setCycleCount(Timeline.INDEFINITE);
             animation.play(); // Start animation
         }
 
         public void add() {
-            Color color = new Color(Math.random(),
-                    Math.random(), Math.random(), 0.5);
+            Color color = new Color(Math.random(), Math.random(), Math.random(), 0.5);
             getChildren().add(new Ball(30, 30, 20, color));
         }
 
@@ -91,8 +89,7 @@ public class MultipleBounceBall extends Application {
         }
 
         public void decreaseSpeed() {
-            animation.setRate(
-                    animation.getRate() > 0 ? animation.getRate() - 0.1 : 0);
+            animation.setRate(animation.getRate() > 0 ? animation.getRate() - 0.1 : 0);
         }
 
         public DoubleProperty rateProperty() {
@@ -103,12 +100,10 @@ public class MultipleBounceBall extends Application {
             for (Node node: this.getChildren()) {
                 Ball ball = (Ball)node;
                 // Check boundaries
-                if (ball.getCenterX() < ball.getRadius() ||
-                        ball.getCenterX() > getWidth() - ball.getRadius()) {
+                if (ball.getCenterX() < ball.getRadius() || ball.getCenterX() > getWidth() - ball.getRadius()) {
                     ball.dx *= -1; // Change ball move direction
                 }
-                if (ball.getCenterY() < ball.getRadius() ||
-                        ball.getCenterY() > getHeight() - ball.getRadius()) {
+                if (ball.getCenterY() < ball.getRadius() || ball.getCenterY() > getHeight() - ball.getRadius()) {
                     ball.dy *= -1; // Change ball move direction
                 }
 

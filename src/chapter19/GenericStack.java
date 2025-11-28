@@ -1,42 +1,43 @@
 package chapter19;
 
+import java.util.ArrayList;
+
 public class GenericStack<E> {
-  private java.util.ArrayList<E> list = new java.util.ArrayList<E>();
- 
-  public GenericStack()
-  {
+    private final ArrayList<E> list = new ArrayList<E>();
+
+    public GenericStack() {
 //  	E object=new E();
 //  	E[] object=new E[10];
-  	E[] e= (E[])new Object[10]; 
+        E[] e= (E[])new Object[10];
 
-  }
-  
-  
-  
-  public int getSize() {
-    return list.size();
-  }
+    }
 
-  public E peek() {
-    return list.get(getSize() - 1);
-  }
 
-  public void push(E o) {
-    list.add(o);
-  }
 
-  public E pop() {
-    E o = list.get(getSize() - 1);
-    list.remove(getSize() - 1);
-    return o;
-  }
+    public int getSize() {
+        return list.size();
+    }
 
-  public boolean isEmpty() {
-    return list.isEmpty();
-  }
-  
-  @Override
-  public String toString() {
-	return "stack: " + list.toString();
-  }
+    public E peek() {
+        return list.get(getSize() - 1);
+    }
+
+    public void push(E o) {
+        list.add(o);
+    }
+
+    public E pop() {
+        E o = list.get(getSize() - 1);
+        list.remove(getSize() - 1);
+        return o;
+    }
+
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return "stack: " + list.toString();
+    }
 }
