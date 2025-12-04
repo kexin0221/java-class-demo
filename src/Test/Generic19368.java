@@ -17,9 +17,8 @@ public class Generic19368 {
 //			if(!newList.contains(temp))newList.add(temp);
 //		}
 
-        for(Iterator<E> it=list.iterator();it.hasNext(); ) {
-            E temp=it.next();
-            if(!newList.contains(temp)) {
+        for (E temp : list) {
+            if (!newList.contains(temp)) {
                 newList.add(temp);
             }
         }
@@ -30,10 +29,10 @@ public class Generic19368 {
     //	public static <E extends Comparable<? super E>> E max(E[][] list)
     public static <E extends Comparable<E>> E max(E[][] list) {
         E max=list[0][0];
-        for(int i=0; i<list.length;i++) {
-            for(int j=0;j<list[i].length;j++) {
-                if(max.compareTo(list[i][j])<0) {
-                    max=list[i][j];
+        for (E[] es : list) {
+            for (E e : es) {
+                if (max.compareTo(e) < 0) {
+                    max = e;
                 }
             }
         }

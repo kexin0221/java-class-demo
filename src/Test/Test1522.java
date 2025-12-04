@@ -42,8 +42,7 @@ public class Test1522 extends Application {
         double width=pane.getWidth();
         double height=pane.getHeight();
 
-        Ellipse e1 = new Ellipse(width / 2, height/4,
-                width/4, height / 8);
+        Ellipse e1 = new Ellipse(width / 2, height/4, width/4, height / 8);
         e1.setStroke(Color.BLACK);
         e1.setFill(Color.WHITE);
 

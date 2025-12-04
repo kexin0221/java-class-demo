@@ -26,8 +26,7 @@ public class EfficientPrimeNumbers {
             if (squareRoot * squareRoot < number) squareRoot++;
 
             // ClosestPair if number is prime
-            for (int k = 0; k < list.size()
-                    && list.get(k) <= squareRoot; k++) {
+            for (int k = 0; k < list.size() && list.get(k) <= squareRoot; k++) {
                 if (number % list.get(k) == 0) { // If true, not prime
                     isPrime = false; // Set isPrime to false
                     break; // Exit the for loop
