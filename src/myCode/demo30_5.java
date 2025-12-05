@@ -1,10 +1,7 @@
 package myCode;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,7 +14,6 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class demo30_5 extends Application {
     private volatile int count = 30;
@@ -35,27 +31,23 @@ public class demo30_5 extends Application {
         bp.setCenter(pane);
         bp.setBottom(hb);
 
-        Thread animationThread = new Thread(() -> {
-            while (true) {
+        Thread animationThread = getThread(pane);
 
-            }
-        })
-
-        Button b1=new Button("Pause");
+        Button b1 = new Button("Pause");
         b1.setOnAction(e -> {
-            animation.pause();
+            running = false;
         });
         hb.getChildren().add(b1);
 
-        Button b2=new Button("Resume");
+        Button b2 = new Button("Resume");
         b2.setOnAction(e -> {
-            animation.play();;
+            running = true;
         });
         hb.getChildren().add(b2);
 
-        Button b3=new Button("Reverse");
+        Button b3 = new Button("Reverse");
         b3.setOnAction(e -> {
-            reverse = reverse * -1;
+            reverse *= -1;
         });
         hb.getChildren().add(b3);
 
@@ -63,20 +55,44 @@ public class demo30_5 extends Application {
         primaryStage.setTitle("ShowImage");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest(event -> {
+            animationThread.interrupt();
+        });
     }
 
-    private void getFan(Pane sp, int angle) {
-        sp.getChildren().clear();
-        Circle circle=new Circle(150,100,90);
-        circle.setFill(Color.WHITE);
-        circle.setStroke(Color.BLACK);
-        sp.getChildren().add(circle);
-        for(int i = 0; i < 4; i++) {
-            Arc arc = new Arc(150, 100, 80, 80, angle + i * 90, 30);
-            arc.setFill(Color.RED); // Set fill color
-            arc.setType(ArcType.ROUND);
-            sp.getChildren().add(arc);
-        }
+    private Thread getThread(Pane pane) {
+        Thread animationThread = new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    break;
+                }
+
+                if (running) {
+                    Platform.runLater(() -> {
+                        pane.getChildren().clear();
+                        Circle circle = new Circle(150, 100, 90);
+                        circle.setFill(Color.WHITE);
+                        circle.setStroke(Color.BLACK);
+                        pane.getChildren().add(circle);
+
+                        for (int i = 0; i < 4; i++) {
+                            Arc arc = new Arc(150, 100, 80, 80,
+                                    count + i * 90, 30);
+                            arc.setFill(Color.RED);
+                            arc.setType(ArcType.ROUND);
+                            pane.getChildren().add(arc);
+                        }
+                        count += 30 * reverse;
+                    });
+                }
+            }
+        });
+        animationThread.setDaemon(true);
+        animationThread.start();
+        return animationThread;
     }
 
     public static void main(String[] args) {
