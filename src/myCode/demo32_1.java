@@ -154,9 +154,8 @@ public class demo32_1 extends Application {
 
     private void connectToDB() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/education",
-                    "scott", "tiger");
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:D:\\code\\java\\Java-class-demo\\src\\myCode\\education.db");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
