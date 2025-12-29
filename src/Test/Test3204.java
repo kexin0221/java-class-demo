@@ -34,30 +34,30 @@ public class Test3204 extends Application {
 		bp.setCenter(sp);
 		bp.setBottom(status);
 
-		Label snoL=new Label("学号");
+		Label snoL=new Label("???");
 		TextField tfSno=new TextField();
-		Button show=new Button("显示成绩");
+		Button show=new Button("??????");
 		hb.getChildren().addAll(snoL,tfSno,show);
 
 		show.setOnAction(e->{
-	    String sno = tfSno.getText();
-	    try {
-	    	System.out.println(sno);
+			String sno = tfSno.getText();
+			try {
+				System.out.println(sno);
 				preparedStatement.setString(1, sno);
 				System.out.println(preparedStatement.toString());
 				ResultSet rset = preparedStatement.executeQuery();
-				StringBuffer sb=new StringBuffer();
+				StringBuilder sb=new StringBuilder();
 				int count=0;
 				while (rset.next()) {
-	        String name = rset.getString(1);
-	        String title = rset.getString(2);
-	        String grade = rset.getString(3);
+					String name = rset.getString(1);
+					String title = rset.getString(2);
+					String grade = rset.getString(3);
 
-	        sb.append(name+" "+title+"："+grade+"\n");
-	        count++;
+					sb.append(name).append(" ").append(title).append("??").append(grade).append("\n");
+					count++;
 				}
 				ta.setText(sb.toString());
-				status.setText(count+"门课程被查询");
+				status.setText(count+"????????");
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -73,28 +73,28 @@ public class Test3204 extends Application {
 	}
 
 	private void initializeDB() {
-    try {
-      // Load the JDBC driver
-      Class.forName("org.sqlite.JDBC");
+		try {
+			// Load the JDBC driver
+			Class.forName("org.sqlite.JDBC");
 //      Class.forName("oracle.jdbc.driver.OracleDriver");
-      System.out.println("Driver loaded");
+			System.out.println("Driver loaded");
 
-      // Establish a connection
-      Connection connection = DriverManager.getConnection
-        ("jdbc:sqlite://f:/adJava/sqllite/education.db");
+			// Establish a connection
+			Connection connection = DriverManager.getConnection
+					("jdbc:sqlite://f:/adJava/sqllite/education.db");
 //    ("jdbc:oracle:thin:@liang.armstrong.edu:1521:orcl",
 //     "scott", "tiger");
-      System.out.println("Database connected");
-      String queryString = "select 姓名, " +
-          "课程名称, 成绩  from 学生, 选课, 课程 " +
-          "where 学生.学号 = ?  " +
-          "and 选课.课程号 = 课程.课程号 and 选课.学号 = 学生.学号";
-      // Create a statement
-      preparedStatement = connection.prepareStatement(queryString);
-    }
-    catch (Exception ex) {
-      ex.printStackTrace();
-    }
+			System.out.println("Database connected");
+			String queryString = "select ????, " +
+					"???????, ???  from ???, ???, ??? " +
+					"where ???.??? = ?  " +
+					"and ???.???? = ???.???? and ???.??? = ???.???";
+			// Create a statement
+			preparedStatement = connection.prepareStatement(queryString);
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

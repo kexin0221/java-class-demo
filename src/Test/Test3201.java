@@ -53,8 +53,7 @@ public class Test3201 extends Application {
 		tfMI.setMaxWidth(25);
 		FlowPane fp2=new FlowPane();
 		fp2.setHgap(5);
-		fp2.getChildren().addAll(ln,tfLN,
-				fn,tfFN,mi,tfMI);
+		fp2.getChildren().addAll(ln,tfLN, fn,tfFN,mi,tfMI);
 		vb.getChildren().add(fp2);
 
 		FlowPane fp3=new FlowPane();
@@ -70,8 +69,7 @@ public class Test3201 extends Application {
 		TextField tfSta=new TextField();
 		FlowPane fp4=new FlowPane();
 		fp4.setHgap(5);
-		fp4.getChildren().addAll(city,tfCity,
-				state,tfSta);
+		fp4.getChildren().addAll(city,tfCity, state,tfSta);
 		vb.getChildren().add(fp4);
 
 		FlowPane fp5=new FlowPane();
@@ -80,8 +78,7 @@ public class Test3201 extends Application {
 		TextField tfTel=new TextField();
 		Label emailL=new Label("email");
 		TextField tfEmail=new TextField();
-		fp5.getChildren().addAll(telL,tfTel
-				,emailL,tfEmail);
+		fp5.getChildren().addAll(telL,tfTel,emailL,tfEmail);
 		vb.getChildren().add(fp5);
 
 		Button view=new Button("view");
@@ -91,12 +88,10 @@ public class Test3201 extends Application {
 		hb.getChildren().addAll(view,insert,update,clear);
 
 		view.setOnAction(e->{
-			String sql= "select * from staff where id='"
-					+tfID.getText()+"'";
+			String sql= "select * from Staff where id='" +tfID.getText()+"'";
 			try {
 				ResultSet rs=stmt.executeQuery(sql);
-				if(rs.next())
-				{
+				if(rs.next()) {
 					tfLN.setText(rs.getString("lastName"));
 					tfFN.setText(rs.getString("firstName"));
 					tfMI.setText(rs.getString("mi"));
@@ -106,9 +101,7 @@ public class Test3201 extends Application {
 					tfTel.setText(rs.getString("telephone"));
 					tfEmail.setText(rs.getString("email"));
 					status.setText("SUCC");
-				}
-				else
-				{
+				} else {
 					status.setText("NO DATA");
 				}
 			} catch (SQLException e1) {
@@ -118,7 +111,7 @@ public class Test3201 extends Application {
 		});
 
 		insert.setOnAction(e->{
-			String sql="insert into staff values('"+
+			String sql="insert into Staff values('"+
 					tfID.getText()+"','"+
 					tfLN.getText()+"','"+
 					tfFN.getText()+"','"+
@@ -139,7 +132,7 @@ public class Test3201 extends Application {
 
 		});
 		update.setOnAction(e->{
-			String sql="update staff set lastName='"
+			String sql="update Staff set lastName='"
 					+tfLN.getText()+"',firstName='"
 					+tfFN.getText()+"',mi='"
 					+tfMI.getText()+"',address='"
@@ -172,7 +165,6 @@ public class Test3201 extends Application {
 			tfEmail.setText("");
 
 		});
-
 		Scene scene = new Scene(bp,470,250);
 		primaryStage.setTitle("ShowImage"); // Set the stage title
 		primaryStage.setScene(scene); // Place the scene in the stage
@@ -180,29 +172,29 @@ public class Test3201 extends Application {
 	}
 
 	private void initializeDB() {
-    try {
-      // Load the JDBC driver
-      Class.forName("org.sqlite.JDBC");
+		try {
+			// Load the JDBC driver
+			Class.forName("org.sqlite.JDBC");
 //      Class.forName("oracle.jdbc.driver.OracleDriver");
-      System.out.println("Driver loaded");
+			System.out.println("Driver loaded");
 
-      // Establish a connection
-      Connection connection = DriverManager.getConnection
-        ("jdbc:sqlite://f:/adJava/sqllite/education.db");
+			// Establish a connection
+			Connection connection = DriverManager.getConnection
+					("jdbc:sqlite://D:\\code\\java\\Java-class-demo\\education.db");
 //    ("jdbc:oracle:thin:@liang.armstrong.edu:1521:orcl",
 //     "scott", "tiger");
-      System.out.println("Database connected");
+			System.out.println("Database connected");
 
-      // Create a statement
-      stmt = connection.createStatement();
-    }
-    catch (Exception ex) {
-      ex.printStackTrace();
-    }
-  }
+			// Create a statement
+			stmt = connection.createStatement();
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 	public static void main(String[] args) {
-    launch(args);
-  }
+		launch(args);
+	}
 
 
 }

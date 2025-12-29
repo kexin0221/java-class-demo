@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 public class Test3101Client extends Application {
 	DataOutputStream toServer = null;
-  DataInputStream fromServer = null;
+	DataInputStream fromServer = null;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
@@ -34,8 +34,7 @@ public class Test3101Client extends Application {
 		TextArea ta=new TextArea();
 		ScrollPane sp=new ScrollPane(ta);
 
-		fp.getChildren().addAll(rate,tfRate,year,
-				tfYear,submit,loan,tfLoan,sp);
+		fp.getChildren().addAll(rate,tfRate,year, tfYear,submit,loan,tfLoan,sp);
 		fp.setHgap(10);
 		Scene scene = new Scene(fp,320,250);
 
@@ -53,25 +52,19 @@ public class Test3101Client extends Application {
 				ta.appendText("Loan Amount: "+tfLoan.getText()+"\n");
 				ta.appendText(" Month : "+fromServer.readDouble()+"\n");
 				ta.appendText("total: "+fromServer.readDouble()+"\n");
-			} catch (NumberFormatException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
+			} catch (NumberFormatException | IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
-		});
+        });
 
 		try {
 			Socket socket = new Socket("localhost", 8000);
 			fromServer = new DataInputStream(socket.getInputStream());
 
-      // Create an output stream to send data to the server
-      toServer = new DataOutputStream(socket.getOutputStream());
-		} catch (UnknownHostException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			// Create an output stream to send data to the server
+			toServer = new DataOutputStream(socket.getOutputStream());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

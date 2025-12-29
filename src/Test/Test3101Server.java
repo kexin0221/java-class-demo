@@ -21,10 +21,8 @@ public class Test3101Server {
 					while(true)
 					{
 						try {
-							DataInputStream inputFromClient = new DataInputStream(
-									socket.getInputStream());
-							DataOutputStream outputToClient = new DataOutputStream(
-									socket.getOutputStream());
+							DataInputStream inputFromClient = new DataInputStream(socket.getInputStream());
+							DataOutputStream outputToClient = new DataOutputStream(socket.getOutputStream());
 							double rate = inputFromClient.readDouble();
 							double year = inputFromClient.readDouble();
 							double loan = inputFromClient.readDouble();

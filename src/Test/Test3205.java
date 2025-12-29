@@ -43,21 +43,20 @@ public class Test3205 extends Application{
 			String sql="select * from "+tfTname.getText();
 			try {
 				ResultSet resultSet = stmt.executeQuery(sql);
-				StringBuffer sb=new StringBuffer();
 
-				ResultSetMetaData rsMetaData = resultSet.getMetaData();
-		    for (int i = 1; i <= rsMetaData.getColumnCount(); i++)
-		      ta.appendText(rsMetaData.getColumnName(i)+"\t");
+                ResultSetMetaData rsMetaData = resultSet.getMetaData();
+				for (int i = 1; i <= rsMetaData.getColumnCount(); i++)
+					ta.appendText(rsMetaData.getColumnName(i)+"\t");
 //		    	sb.append( rsMetaData.getColumnName(i)+"\t");
-		    ta.appendText("\n");
+				ta.appendText("\n");
 
-		    while (resultSet.next()) {
-		      for (int i = 1; i <= rsMetaData.getColumnCount(); i++)
+				while (resultSet.next()) {
+					for (int i = 1; i <= rsMetaData.getColumnCount(); i++)
 //		      	sb.append(resultSet.getObject(i)+"\t");
-		      	  ta.appendText(resultSet.getObject(i)+"\t");
+						ta.appendText(resultSet.getObject(i)+"\t");
 //		      	sb.append("\n");
-		      	ta.appendText("\n");
-		    }
+					ta.appendText("\n");
+				}
 //		    ta.setText(sb.toString());
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -73,26 +72,26 @@ public class Test3205 extends Application{
 
 
 	private void initializeDB() {
-    try {
-      // Load the JDBC driver
-      Class.forName("org.sqlite.JDBC");
+		try {
+			// Load the JDBC driver
+			Class.forName("org.sqlite.JDBC");
 //      Class.forName("oracle.jdbc.driver.OracleDriver");
-      System.out.println("Driver loaded");
+			System.out.println("Driver loaded");
 
-      // Establish a connection
-      Connection connection = DriverManager.getConnection
-        ("jdbc:sqlite://e:/adJava/sqllite/education.db");
+			// Establish a connection
+			Connection connection = DriverManager.getConnection
+					("jdbc:sqlite://e:/adJava/sqllite/education.db");
 //    ("jdbc:oracle:thin:@liang.armstrong.edu:1521:orcl",
 //     "scott", "tiger");
-      System.out.println("Database connected");
+			System.out.println("Database connected");
 
-      // Create a statement
-      stmt = connection.createStatement();
-    }
-    catch (Exception ex) {
-      ex.printStackTrace();
-    }
-  }
+			// Create a statement
+			stmt = connection.createStatement();
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
