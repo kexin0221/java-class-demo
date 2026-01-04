@@ -17,13 +17,12 @@ public class Test152425 extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // TODO Auto-generated method stub
-        Pane pane=new Pane();
-        Circle circle=new Circle(150,100,15);
+        Pane pane = new Pane();
+        Circle circle = new Circle(150,100,15);
         circle.setFill(Color.BLUE);
 
         Arc arc = new Arc(250, 100, 200, 200, 210, 120);
-        arc.setStroke(Color.RED); // Set fill color
+        arc.setStroke(Color.RED);
         arc.setFill(Color.WHITE);
         arc.setType(ArcType.OPEN);
         pane.getChildren().addAll(arc,circle);
@@ -43,20 +42,18 @@ public class Test152425 extends Application {
         pt.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         pt.setCycleCount(Timeline.INDEFINITE);
         pt.setAutoReverse(true);
-        pt.play(); // Start animation
+        pt.play();
 
         pane.setOnMousePressed(e->{ft.pause();pt.pause();});
         pane.setOnMouseReleased(e->{ft.play();pt.play();});
 
         Scene scene = new Scene(pane,500,350);
-        primaryStage.setTitle("ShowImage"); // Set the stage title
-        primaryStage.setScene(scene); // Place the scene in the stage
+        primaryStage.setTitle("ShowImage");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         launch(args);
     }
-
 }

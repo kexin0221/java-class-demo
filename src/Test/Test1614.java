@@ -28,11 +28,10 @@ public class Test1614 extends Application {
     Text text = new Text(100, 100, "Programming is fun");
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // TODO Auto-generated method stub
         BorderPane bp = new BorderPane();
         Pane pane = new Pane();
-
         pane.getChildren().add(text);
+
         HBox hb = new HBox();
         hb.setAlignment(Pos.TOP_CENTER);
         hb.setSpacing(5);

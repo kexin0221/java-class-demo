@@ -32,7 +32,8 @@ public class TimelineDemo extends Application {
         };
 
         // Create an animation for alternating text
-        Timeline animation = new Timeline(new KeyFrame(Duration.millis(500), eventHandler));
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(500),
+                eventHandler));
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play(); // Start animation
 

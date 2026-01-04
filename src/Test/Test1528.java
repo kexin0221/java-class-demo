@@ -20,14 +20,13 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Test1528 extends Application {
-    int count=30;
-    int reverse=1;
+    int count = 30;
+    int reverse = 1;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // TODO Auto-generated method stub
-        BorderPane bp=new BorderPane();
-        Pane pane=new Pane();
-        HBox hb=new HBox();
+        BorderPane bp = new BorderPane();
+        Pane pane = new Pane();
+        HBox hb = new HBox();
         hb.setAlignment(Pos.TOP_CENTER);
         hb.setSpacing(5);
         hb.setPadding(new Insets(11.5, 12.5, 13.5, 14.5));
@@ -36,53 +35,48 @@ public class Test1528 extends Application {
         bp.setBottom(hb);
 
         EventHandler<ActionEvent> eventHandler = e -> {
-            getFan(pane,count);
-            count=count+30*reverse;
+            getFan(pane, count);
+            count += 30 * reverse;
         };
-        Timeline animation = new Timeline(new KeyFrame(Duration.millis(100), eventHandler));
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(100),
+                eventHandler));
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play();
 
-        Button b1=new Button("Pause");
-        b1.setOnAction(e ->{
-            animation.pause();
-        });
+        Button b1 = new Button("Pause");
+        b1.setOnAction(e -> animation.pause());
         hb.getChildren().add(b1);
 
-        Button b2=new Button("Resume");
-        b2.setOnAction(e ->{
-            animation.play();;
-        });
+        Button b2 = new Button("Resume");
+        b2.setOnAction(e -> animation.play());
         hb.getChildren().add(b2);
 
-        Button b3=new Button("Reverse");
-        b3.setOnAction(e ->{
-            reverse=reverse*-1;
-        });
+        Button b3 = new Button("Reverse");
+        b3.setOnAction(e -> reverse *= -1);
         hb.getChildren().add(b3);
 
         Scene scene = new Scene(bp,300,250);
-        primaryStage.setTitle("ShowImage"); // Set the stage title
-        primaryStage.setScene(scene); // Place the scene in the stage
+        primaryStage.setTitle("ShowImage");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     private void getFan(Pane sp, int angle) {
         sp.getChildren().clear();
-        Circle circle=new Circle(150,100,90);
+        Circle circle = new Circle(150, 100, 90);
         circle.setFill(Color.WHITE);
         circle.setStroke(Color.BLACK);
         sp.getChildren().add(circle);
-        for(int i=0;i<4;i++) {
-            Arc arc = new Arc(150, 100, 80, 80, angle + i*90, 30);
-            arc.setFill(Color.RED); // Set fill color
+        for(int i = 0; i < 4; i++) {
+            Arc arc = new Arc(150, 100, 80, 80,
+                    angle + i * 90, 30);
+            arc.setFill(Color.RED);
             arc.setType(ArcType.ROUND);
             sp.getChildren().add(arc);
         }
     }
+
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         launch(args);
     }
-
 }
