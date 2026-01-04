@@ -16,7 +16,7 @@ public class GenericStack191<E> {
     }
 
     public E peek() {
-        if(size==0) {
+        if(size == 0) {
             System.out.println("The stack is empty");
             return null;
         }
@@ -46,7 +46,6 @@ public class GenericStack191<E> {
     }
 
     public String toString() {
-
         return"stack: " + Arrays.toString(list);
     }
 
@@ -58,18 +57,18 @@ public class GenericStack191<E> {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        GenericStack191<Integer> list1=new GenericStack191<Integer>();
+        GenericStack191<Integer> list1= new GenericStack191<>();
 
         for(int i=0;i<100;i++) {
             list1.push(i);
         }
         System.out.println(list1.getSize());
         System.out.println(list1.getArrayLength());
-//		list1.print();
-//		list1.pop();
+		list1.print();
+		list1.pop();
         list1.push(100);
         System.out.println(list1.getSize());
         System.out.println(list1.getArrayLength());
-//		list1.print();
+		list1.print();
     }
 }

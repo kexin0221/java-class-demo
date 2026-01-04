@@ -1,21 +1,12 @@
 package Test;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 public class Generic19368 {
 
     public static <E> ArrayList<E> removeDuplicates(ArrayList<E> list) {
-//		ArrayList<E> newList=(ArrayList<E>)list.clone();
-//		newList.clear();
         ArrayList<E> newList=new ArrayList<>();
-//		E newList1=new E();
-
-//		for(E temp:list)
-//		{
-//			if(!newList.contains(temp))newList.add(temp);
-//		}
 
         for (E temp : list) {
             if (!newList.contains(temp)) {
@@ -23,12 +14,10 @@ public class Generic19368 {
             }
         }
         return newList;
-
     }
 
-    //	public static <E extends Comparable<? super E>> E max(E[][] list)
     public static <E extends Comparable<E>> E max(E[][] list) {
-        E max=list[0][0];
+        E max = list[0][0];
         for (E[] es : list) {
             for (E e : es) {
                 if (max.compareTo(e) < 0) {
@@ -40,20 +29,17 @@ public class Generic19368 {
     }
 
     public static <E> void shuffle(ArrayList<E> list) {
-        Random random=new Random();
-        for(int i=0;i<list.size();i++) {
-            int index=random.nextInt(list.size());
-            E temp=list.get(index);
+        Random random = new Random();
+        for(int i = 0; i < list.size(); i++) {
+            int index = random.nextInt(list.size());
+            E temp = list.get(index);
             list.remove(index);
             list.add(temp);
         }
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
-        //test removeDuplicates
-        ArrayList<Integer> list=new ArrayList<Integer>();
+        ArrayList<Integer> list= new ArrayList<>();
         list.add(1);
         list.add(5);
         list.add(1);
@@ -61,22 +47,20 @@ public class Generic19368 {
         list.add(2);
 
         System.out.println(list);
-        System.out.println(Generic19368.<Integer>removeDuplicates(list));
         System.out.println(removeDuplicates(list));
 
-        //test max
-        Double[][] matirx=new Double[6][7];
-        for(int i=0; i<matirx.length;i++) {
-            for(int j=0;j<matirx[i].length;j++) {
-                matirx[i][j]=Math.random();
-                System.out.print(matirx[i][j]+" ");
+        Double[][] matirx = new Double[6][7];
+        for(int i = 0; i < matirx.length; i++) {
+            for(int j = 0; j < matirx[i].length; j++) {
+                matirx[i][j] = Math.random() * 100;
+                System.out.print(matirx[i][j] + " ");
             }
             System.out.println();
         }
         System.out.println(max(matirx));
 
 //		test shuffle
-        ArrayList<Integer> list1=new ArrayList<Integer>();
+        ArrayList<Integer> list1= new ArrayList<>();
         list1.add(1);
         list1.add(2);
         list1.add(3);

@@ -33,12 +33,11 @@ public class GenericStack192<E> extends ArrayList<E> {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         System.out.println("Please enter five strings");
-        GenericStack192<String> stack=new GenericStack192<String>();
-        Scanner scan=new Scanner(System.in);
+        GenericStack192<String> stack = new GenericStack192<>();
+        Scanner scan = new Scanner(System.in);
 
-        for(int i=0;i<5;i++) {
+        for(int i = 0; i < 5; i++) {
             stack.push(scan.nextLine());
         }
         System.out.println(stack);
