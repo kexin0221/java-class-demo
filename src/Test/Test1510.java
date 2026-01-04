@@ -11,21 +11,20 @@ public class Test1510 extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // TODO Auto-generated method stub
-        Pane pane=new Pane();
-        Text text= new Text(100,100,"");
+        Pane pane = new Pane();
+        Text text = new Text(100,100,"");
 
         pane.getChildren().add(text);
 
         Scene scene = new Scene(pane,450,200);
-        primaryStage.setTitle("ShowImage"); // Set the stage title
-        primaryStage.setScene(scene); // Place the scene in the stage
+        primaryStage.setTitle("ShowImage");
+        primaryStage.setScene(scene);
         primaryStage.show();
 
-        StringBuffer value=new StringBuffer();
+        StringBuffer value = new StringBuffer();
 
         text.setOnKeyPressed(e -> {
-            if(e.getCode()==KeyCode.ENTER) {
+            if (e.getCode() == KeyCode.ENTER) {
                 text.setText(value.toString());
                 value.delete(0, value.length());
             } else {
@@ -37,8 +36,6 @@ public class Test1510 extends Application {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         launch(args);
     }
-
 }

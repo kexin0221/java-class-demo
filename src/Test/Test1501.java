@@ -16,46 +16,43 @@ public class Test1501 extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // TODO Auto-generated method stub
-        BorderPane bp=new BorderPane();
-        HBox hb=new HBox(5);
-//		hb.set
-        StackPane sp=new StackPane();
+        BorderPane bp = new BorderPane();
+        HBox hb = new HBox(5);
+        StackPane sp = new StackPane();
         bp.setCenter(hb);
         bp.setBottom(sp);
 
         addCard(hb);
 
-        Button but=new Button("Refresh");
-
+        Button but = new Button("Refresh");
         but.setOnAction(e -> {
             hb.getChildren().clear();
             addCard(hb);
         });
         sp.getChildren().add(but);
 
-
         Scene scene = new Scene(bp,300,150);
-        primaryStage.setTitle("ShowImage"); // Set the stage title
-        primaryStage.setScene(scene); // Place the scene in the stage
+        primaryStage.setTitle("ShowImage");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     private void addCard(HBox hb) {
-        ArrayList<Integer> fileNames=new ArrayList<>();
-        for(int i=1;i<=52;i++)fileNames.add(i);
+        ArrayList<Integer> fileNames = new ArrayList<>();
+        for(int i = 1; i <= 52; i++) {
+            fileNames.add(i);
+        }
 
-        for(int i=0;i<4;i++) {
-            int index=(int)(Math.random()*(52-i));
-            int fileName=fileNames.get(index);
+        for(int i = 0; i < 4; i++) {
+            int index = (int)(Math.random()*(52-i));
+            int fileName = fileNames.get(index);
             fileNames.remove(index);
-            Image image = new Image("file:card/"+fileName+".png");
+            Image image = new Image("file:card/" + fileName + ".png");
             hb.getChildren().add(new ImageView(image));
         }
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         launch(args);
     }
 

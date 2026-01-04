@@ -10,40 +10,31 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Test1502 extends Application {
-	int i=1;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		BorderPane bp=new BorderPane();
-		StackPane spC=new StackPane();
-		StackPane spB=new StackPane();
+		BorderPane bp = new BorderPane();
+		StackPane spC = new StackPane();
+		StackPane spB = new StackPane();
 
 		bp.setCenter(spC);
 		bp.setBottom(spB);
 
-		Rectangle r=new Rectangle(100,100,150,100);
-		r.setFill(Color.WHITE);
+		Rectangle r = new Rectangle(150, 100);
+		r.setFill(Color.TRANSPARENT);
 		r.setStroke(Color.BLACK);
 		spC.getChildren().add(r);
 
-		Button but=new Button("Rotate");
-
-		but.setOnAction(e -> {
-			r.setRotate(r.getRotate()+15);
-//			r.setRotate(i*15);
-//			i++;
-		});
-
+		Button but = new Button("Rotate");
+		but.setOnAction(e -> r.setRotate(r.getRotate() + 15));
 		spB.getChildren().add(but);
 
 		Scene scene = new Scene(bp,300,300);
-		primaryStage.setTitle("ShowImage"); // Set the stage title
-		primaryStage.setScene(scene); // Place the scene in the stage
+		primaryStage.setTitle("ShowImage");
+		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		launch(args);
 	}
 
