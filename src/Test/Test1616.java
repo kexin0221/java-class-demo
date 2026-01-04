@@ -15,16 +15,15 @@ import javafx.stage.Stage;
 public class Test1616 extends Application {
 
     private final String[] flagTitles = { "Canada", "China", "Denmark", "France",
-            "Germany", "India", "Norway", "United Kingdom",
-            "United States of America" };
+        "Germany", "India", "Norway", "United Kingdom", "United States of America" };
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // TODO Auto-generated method stub
         BorderPane bp = new BorderPane();
         FlowPane fp = new FlowPane();
         Label la = new Label("");
-        ListView<String> lv = new ListView<>(FXCollections.observableArrayList(flagTitles));
+        ListView<String> lv = new ListView<>(FXCollections.
+                observableArrayList(flagTitles));
         lv.setPrefSize(400, 400);
         lv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
@@ -33,11 +32,11 @@ public class Test1616 extends Application {
         bp.setCenter(sp);
         bp.setBottom(la);
 
-
-        Label la1=new Label("Choose Selection Model: ");
-        ComboBox<String> cbo = new ComboBox<>(FXCollections.observableArrayList("SINGLE","MULTIPLE"));
+        Label la1 = new Label("Choose Selection Model: ");
+        ComboBox<String> cbo = new ComboBox<>(FXCollections.
+                observableArrayList("SINGLE", "MULTIPLE"));
         cbo.setOnAction(e->{
-            if(cbo.getValue().equals("SINGLE")) {
+            if (cbo.getValue().equals("SINGLE")) {
                 lv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
             } else {
                 lv.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -47,7 +46,7 @@ public class Test1616 extends Application {
 
         lv.getSelectionModel().selectedItemProperty().addListener(e->{
             StringBuilder sb = new StringBuilder();
-            for(String select:lv.getSelectionModel().getSelectedItems()) {
+            for (String select : lv.getSelectionModel().getSelectedItems()) {
                 sb.append(select);
                 sb.append(", ");
             }
@@ -55,15 +54,12 @@ public class Test1616 extends Application {
         });
 
         Scene scene = new Scene(bp, 450, 170);
-        primaryStage.setTitle("ListViewDemo"); // Set the stage title
-        primaryStage.setScene(scene); // Place the scene in the stage
-        primaryStage.show(); // Display the stage
-
+        primaryStage.setTitle("ListViewDemo");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         launch(args);
     }
-
 }

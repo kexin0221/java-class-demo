@@ -63,64 +63,39 @@ public class Test1614 extends Application {
         cbo1.setValue(sizes.get(19));
         hb.getChildren().addAll(l1, cbo, l2, cbo1);
 
-//		text.setFont(fontNormal);
         CheckBox chkBold = new CheckBox("Bold");
         CheckBox chkItalic = new CheckBox("Italic");
-        hb1.getChildren().addAll(chkBold,chkItalic);
+        hb1.getChildren().addAll(chkBold, chkItalic);
         EventHandler<ActionEvent> handler = e -> {
-//			Font fontBoldItalic = Font.font(cbo.getValue(), FontWeight.BOLD,
-//					FontPosture.ITALIC, Double.parseDouble(cbo1.getValue()));
-//			Font fontBold = Font.font(cbo.getValue(), FontWeight.BOLD,
-//					FontPosture.REGULAR, Double.parseDouble(cbo1.getValue()));
-//			Font fontItalic = Font.font(cbo.getValue(), FontWeight.NORMAL,
-//					FontPosture.ITALIC, Double.parseDouble(cbo1.getValue()));
-//			Font fontNormal = Font.font(cbo.getValue(), FontWeight.NORMAL,
-//					FontPosture.REGULAR, Double.parseDouble(cbo1.getValue()));
-
-
             if (chkBold.isSelected() && chkItalic.isSelected()) {
-//				System.out.println(cbo.getValue());
-//				fontBoldItalic = Font.font(cbo.getValue()+"Bold", Double.parseDouble(cbo1.getValue()));
-//				System.out.println(fontBoldItalic.getName());
                 text.setFont(Font.font(cbo.getValue(), FontWeight.BOLD,
-                        FontPosture.ITALIC, Double.parseDouble(cbo1.getValue()))); // Both check boxes checked
-            }
-            else if (chkBold.isSelected()) {
-//      	System.out.println(cbo.getValue()+"fontBold"+fontBold);
+                        FontPosture.ITALIC, Double.parseDouble(cbo1.getValue())));
+            } else if (chkBold.isSelected()) {
                 text.setFont(Font.font(cbo.getValue(), FontWeight.BOLD,
-                        FontPosture.REGULAR, Double.parseDouble(cbo1.getValue()))); // The Bold check box checked
-            }
-            else if (chkItalic.isSelected()) {
-
-//      	System.out.println(fontItalic);
+                        FontPosture.REGULAR, Double.parseDouble(cbo1.getValue())));
+            } else if (chkItalic.isSelected()) {
                 text.setFont(Font.font(cbo.getValue(), FontWeight.NORMAL,
-                        FontPosture.ITALIC, Double.parseDouble(cbo1.getValue()))); // The Italic check box checked
-            }
-            else {
-
-//      	System.out.println(cbo.getValue()+"fontNormal"+fontNormal);
-
+                        FontPosture.ITALIC, Double.parseDouble(cbo1.getValue())));
+            } else {
                 text.setFont(Font.font(cbo.getValue(), FontWeight.NORMAL,
-                        FontPosture.REGULAR, Double.parseDouble(cbo1.getValue()))); // Both check boxes unchecked
+                        FontPosture.REGULAR, Double.parseDouble(cbo1.getValue())));
             }
         };
-
         chkBold.setOnAction(handler);
         chkItalic.setOnAction(handler);
         cbo1.setOnAction(handler);
         cbo.setOnAction(handler);
 
-        text.setFont(Font.font(cbo.getValue(), FontWeight.NORMAL, FontPosture.REGULAR, Double.parseDouble(cbo1.
-                getValue())));
+        text.setFont(Font.font(cbo.getValue(), FontWeight.NORMAL,
+                FontPosture.REGULAR, Double.parseDouble(cbo1.getValue())));
+
         Scene scene = new Scene(bp, 600, 450);
-        primaryStage.setTitle("ShowImage"); // Set the stage title
-        primaryStage.setScene(scene); // Place the scene in the stage
+        primaryStage.setTitle("ShowImage");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         launch(args);
     }
-
 }
