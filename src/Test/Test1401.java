@@ -13,13 +13,11 @@ public class Test1401 extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // TODO Auto-generated method stub
         GridPane pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
         pane.setPadding(new Insets(11.5, 12.5, 13.5, 14.5));
         pane.setHgap(5.5);
         pane.setVgap(5.5);
-
 
         pane.add(new ImageView(new Image("file:image/uk.gif")), 0, 0);
         pane.add(new ImageView(new Image("file:image/ca.gif")), 1, 0);
@@ -33,7 +31,6 @@ public class Test1401 extends Application {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         launch(args);
     }
 

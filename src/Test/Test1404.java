@@ -19,9 +19,7 @@ public class Test1404 extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
 		FlowPane pane = new FlowPane();
-
 		pane.setPadding(new Insets(50, 12.5, 13.5, 14.5));
 		pane.setHgap(20);
 		pane.setVgap(5.5);
@@ -32,18 +30,17 @@ public class Test1404 extends Application {
 			label.setFont(f1);
 			label.setRotate(90);
 
-			Color c=new Color(Math.random(), Math.random(), Math.random(), Math.random());
+			Color c = new Color(Math.random(), Math.random(), Math.random(), Math.random());
 			label.setTextFill(c);
 			pane.getChildren().add(label);
 		}
 		Scene scene = new Scene(pane, 360, 150);
-		primaryStage.setTitle("ShowImage"); // Set the stage title
-		primaryStage.setScene(scene); // Place the scene in the stage
-		primaryStage.show(); // Display the stage
+		primaryStage.setTitle("ShowImage");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		launch(args);
 	}
 }
