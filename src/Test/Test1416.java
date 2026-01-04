@@ -11,13 +11,12 @@ public class Test1416 extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		Pane pane=new Pane();
+		Pane pane = new Pane();
 
-		Line l1=new Line(0,0,0,0);
-		Line l2=new Line(0,0,0,0);
-		Line l3=new Line(0,0,0,0);
-		Line l4=new Line(0,0,0,0);
+		Line l1 = new Line(0,0,0,0);
+		Line l2 = new Line(0,0,0,0);
+		Line l3 = new Line(0,0,0,0);
+		Line l4 = new Line(0,0,0,0);
 
 		l1.startYProperty().bind(pane.heightProperty().divide(3));
 		l1.endYProperty().bind(pane.heightProperty().divide(3));
@@ -42,15 +41,13 @@ public class Test1416 extends Application {
 		pane.getChildren().add(l3);
 		pane.getChildren().add(l4);
 
-
 		Scene scene = new Scene(pane,300,300);
-		primaryStage.setTitle("ShowImage"); // Set the stage title
-		primaryStage.setScene(scene); // Place the scene in the stage
+		primaryStage.setTitle("ShowImage");
+		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		launch(args);
 	}
 

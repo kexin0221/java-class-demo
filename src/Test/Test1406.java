@@ -27,11 +27,11 @@ public class Test1406 extends Application {
 
                 pane.add(rect, i, j);
             }
-            Scene scene = new Scene(pane, 400, 400);
-            primaryStage.setTitle("ShowImage");
-            primaryStage.setScene(scene);
-            primaryStage.show();
         }
+        Scene scene = new Scene(pane, 400, 400);
+        primaryStage.setTitle("ShowImage");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
