@@ -17,8 +17,7 @@ public class demo30_4 {
         for (int i = 0; i < 1000; i++) {
             threads[i] = new Thread(() -> {
                 synchronized (lock) {
-                    int temp = sum;
-                    sum = temp + 1;
+                    sum++;
                 }
             });
             threads[i].start();
@@ -32,8 +31,7 @@ public class demo30_4 {
         Thread[] threads = new Thread[1000];
         for (int i = 0; i < 1000; i++) {
             threads[i] = new Thread(() -> {
-                int temp = sum;
-                sum = temp + 1;
+                sum++;
             });
             threads[i].start();
         }
