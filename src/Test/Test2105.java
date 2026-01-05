@@ -1,8 +1,8 @@
 package Test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -18,25 +18,22 @@ public class Test2105 {
             "strictfp", "super", "switch", "synchronized", "this",
             "throw", "throws", "transient", "try", "void", "volatile",
             "while", "true", "false", "null"};
+
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         Set<String> keywordSet = new HashSet<>(Arrays.asList(keywordString));
+        File file = new File("./src/chapter1/ShowLogicErrors.java");
 
-        java.io.File file = new java.io.File("./src/chapter1/ShowLogicErrors.java");
         try (Scanner input = new Scanner(file)) {
-
             StringBuffer sb = new StringBuffer("<html><body>");
-            // Read data from a file
             int count = 0;
             while (input.hasNext()) {
-                // System.out.println(input.next());
                 String temp = input.nextLine().trim();
-                if (temp.indexOf("//") == 0) sb.append("<p style=\"color:green\">").append(temp).append("</p>\n");
-                else {
+                if (temp.indexOf("//") == 0) {  // 注释行
+                    sb.append("<p style=\"color:green\">").append(temp).append("</p>\n");
+                } else {
                     String[] temps = temp.split(" ");
-//				System.out.println(temp);
                     for (String t1 : temps) {
-                        if (keywordSet.contains(t1)) {
+                        if (keywordSet.contains(t1)) {  // 关键字
                             sb.append(" <font color=DarkBlue>").append(t1).append("</font> ");
                         } else if (t1.indexOf("\"") > 0) {
                             String[] lits = t1.split("\"");
@@ -44,20 +41,18 @@ public class Test2105 {
                             for (int i = 1; i < lits.length; i++) {
                                 if (count % 2 == 0) {
                                     sb.append("<font color=blue>\"").append(lits[i]);
-                                    count++;
                                 } else {
                                     sb.append("\"</font>").append(lits[i]);
-                                    count++;
                                 }
+                                count++;
                             }
                         } else if (t1.indexOf("\"") == 0) {
                             if (count % 2 == 0) {
                                 sb.append("<font color=blue>").append(t1);
-                                count++;
                             } else {
                                 sb.append("</font>").append(t1);
-                                count++;
                             }
+                            count++;
                         } else {
                             sb.append(" ").append(t1).append(" ");
                         }
@@ -68,7 +63,6 @@ public class Test2105 {
             sb.append("</body></html>");
             System.out.print(sb);
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

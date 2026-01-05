@@ -1,6 +1,5 @@
 package Test;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 import javafx.animation.KeyFrame;
@@ -41,6 +40,7 @@ public class Test209 extends Application {
         ScrollBar sbSpeed = new ScrollBar();
         sbSpeed.setMax(20);
         sbSpeed.setValue(10);
+        sbSpeed.setMin(1);
         ballPane.rateProperty().bind(sbSpeed.valueProperty());
 
         BorderPane pane = new BorderPane();
@@ -55,21 +55,22 @@ public class Test209 extends Application {
     }
 
     private static class MultipleBallPane extends Pane {
+
         private final Timeline animation;
+
         private final PriorityQueue<Ball> queue1 = new PriorityQueue<>(
                 (b1, b2) -> Double.compare(b2.getRadius(), b1.getRadius()));
 
         public MultipleBallPane() {
-
-            // Create an animation for moving the ball
-            animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall()));
+            animation = new Timeline(new KeyFrame(Duration.millis(50),
+                    e -> moveBall()));
             animation.setCycleCount(Timeline.INDEFINITE);
-            animation.play(); // Start animation
+            animation.play();
         }
 
         public void add() {
             Color color = new Color(Math.random(), Math.random(), Math.random(), 0.5);
-            Ball b= new Ball(30, 30, Math.random() * 20, color);
+            Ball b = new Ball(30, 30, Math.random() * 20, color);
             getChildren().add(b);
             queue1.offer(b);
         }
@@ -77,7 +78,6 @@ public class Test209 extends Application {
         public void subtract() {
             if (!getChildren().isEmpty()) {
                 getChildren().remove(queue1.remove());
-//        getChildren().remove(getChildren().size() - 1);
             }
         }
 
@@ -89,77 +89,36 @@ public class Test209 extends Application {
             animation.pause();
         }
 
-        public void increaseSpeed() {
-            animation.setRate(animation.getRate() + 0.1);
-        }
-
-        public void decreaseSpeed() {
-            animation.setRate(animation.getRate() > 0 ? animation.getRate() - 0.1 : 0);
-        }
-
         public DoubleProperty rateProperty() {
             return animation.rateProperty();
         }
 
         protected void moveBall() {
-            for (Node node: this.getChildren()) {
+            for (Node node : this.getChildren()) {
                 Ball ball = (Ball)node;
-                // Check boundaries
-                if (ball.getCenterX() < ball.getRadius() || ball.getCenterX() > getWidth() - ball.getRadius()) {
-                    ball.dx *= -1; // Change ball move direction
+                if (ball.getCenterX() < ball.getRadius() ||
+                        ball.getCenterX() > getWidth() - ball.getRadius()) {
+                    ball.dx *= -1;
                 }
-                if (ball.getCenterY() < ball.getRadius() || ball.getCenterY() > getHeight() - ball.getRadius()) {
-                    ball.dy *= -1; // Change ball move direction
+                if (ball.getCenterY() < ball.getRadius() ||
+                        ball.getCenterY() > getHeight() - ball.getRadius()) {
+                    ball.dy *= -1;
                 }
-
-                // Adjust ball position
                 ball.setCenterX(ball.dx + ball.getCenterX());
                 ball.setCenterY(ball.dy + ball.getCenterY());
             }
         }
     }
 
-    //  �ڶ���д����ʹ��Comparator
     static class Ball extends Circle  {
         private double dx = 1, dy = 1;
 
         Ball(double x, double y, double radius, Color color) {
             super(x, y, radius);
-            setFill(color); // Set ball color
+            setFill(color);
         }
     }
-//  class BallComparator implements Comparator<Ball>
-//  {
-//  	public int compare(Ball b1,Ball b2)
-//  	{
-//  		if(b1.getRadius()==b2.getRadius())return 0;
-//  		else if(b1.getRadius()>b2.getRadius())return -1;
-//  		else return 1;
-//  	}
-//  }
 
-//������д����ʹ��Comparable
-//  class Ball extends Circle implements Comparable<Ball> {
-//    private double dx = 1, dy = 1;
-//
-//    Ball(double x, double y, double radius, Color color) {
-//      super(x, y, radius);
-//      setFill(color); // Set ball color
-//    }
-//
-//    public int compareTo(Ball b2)
-//    {
-//    	if(this.getRadius()==b2.getRadius())return 0;
-//  		else if(this.getRadius()>b2.getRadius())return -1;
-//  		else return 1;
-//    }
-//  }
-
-
-    /**
-     * The main method is only needed for the IDE with limited
-     * JavaFX support. Not needed for running from the command line.
-     */
     public static void main(String[] args) {
         launch(args);
     }
