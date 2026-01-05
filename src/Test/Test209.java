@@ -1,6 +1,5 @@
 package Test;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -22,7 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Test209 extends Application {
-    @Override // Override the start method in the Application class
+    @Override
     public void start(Stage primaryStage) {
         MultipleBallPane ballPane = new MultipleBallPane();
         ballPane.setStyle("-fx-border-color: yellow");
@@ -33,15 +32,12 @@ public class Test209 extends Application {
         hBox.getChildren().addAll(btAdd, btSubtract);
         hBox.setAlignment(Pos.CENTER);
 
-        // Add or remove a ball
         btAdd.setOnAction(e -> ballPane.add());
         btSubtract.setOnAction(e -> ballPane.subtract());
 
-        // Pause and resume animation
         ballPane.setOnMousePressed(e -> ballPane.pause());
         ballPane.setOnMouseReleased(e -> ballPane.play());
 
-        // Use a scroll bar to control animation speed
         ScrollBar sbSpeed = new ScrollBar();
         sbSpeed.setMax(20);
         sbSpeed.setValue(10);
@@ -52,26 +48,16 @@ public class Test209 extends Application {
         pane.setTop(sbSpeed);
         pane.setBottom(hBox);
 
-        // Create a scene and place the pane in the stage
         Scene scene = new Scene(pane, 250, 150);
-        primaryStage.setTitle("MultipleBounceBall"); // Set the stage title
-        primaryStage.setScene(scene); // Place the scene in the stage
-        primaryStage.show(); // Display the stage
+        primaryStage.setTitle("MultipleBounceBall");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     private static class MultipleBallPane extends Pane {
         private final Timeline animation;
-        private final PriorityQueue<Ball> queue1 = new PriorityQueue<Ball>(new Comparator<Ball>(){
-            public int compare(Ball b1,Ball b2){
-                return Double.compare(b2.getRadius(), b1.getRadius());
-            }
-        });
-
-//  �ڶ���д����ʹ��Comparator
-//    private PriorityQueue<Ball> queue1 = new PriorityQueue<Ball>(new BallComparator());
-
-//  ������д����ʹ��Comparable
-//    private PriorityQueue<Ball> queue1 = new PriorityQueue<Ball>();
+        private final PriorityQueue<Ball> queue1 = new PriorityQueue<>(
+                (b1, b2) -> Double.compare(b2.getRadius(), b1.getRadius()));
 
         public MultipleBallPane() {
 

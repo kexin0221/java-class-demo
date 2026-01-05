@@ -74,8 +74,8 @@ public class Test1624 extends Application {
 
         HBox hBox = new HBox(10);
         hBox.setAlignment(Pos.CENTER);
-        hBox.getChildren().addAll(playButton, rewindButton, time, slHorizontal,
-                time1, new Label("Volume"), slVolume);
+        hBox.getChildren().addAll(playButton, rewindButton, time, slHorizontal, time1,
+                new Label("Volume"), slVolume);
 
         BorderPane pane = new BorderPane();
         pane.setCenter(mediaView);
