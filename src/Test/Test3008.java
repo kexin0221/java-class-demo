@@ -1,13 +1,11 @@
-package Test;  // 声明包名
+package Test;
 
-// 导入Java并发相关的类
 import java.util.concurrent.ExecutorService;  // 线程池接口，用于管理线程
 import java.util.concurrent.Executors;  // 线程池工厂类，用于创建不同类型的线程池
 import java.util.concurrent.locks.Condition;  // 条件对象，用于线程间通信
 import java.util.concurrent.locks.Lock;  // 锁接口，用于实现线程同步
 import java.util.concurrent.locks.ReentrantLock;  // 可重入锁，Lock接口的实现类
 
-// 测试类，演示银行账户的多线程存款和取款操作
 public class Test3008 {
   // 创建一个共享的Account对象，用于演示多线程操作
   private static final Account account = new Account();
@@ -35,7 +33,7 @@ public class Test3008 {
         // 无限循环执行存款操作
         while (true) {
           // 随机生成1-10之间的存款金额，调用账户的deposit方法
-          account.deposit((int)(Math.random() * 10) + 1);
+          account.deposit((int) (Math.random() * 10) + 1);
           // 线程休眠1秒，模拟实际应用中的时间间隔
           Thread.sleep(1000);
         }
@@ -53,7 +51,7 @@ public class Test3008 {
         // 无限循环执行取款操作
         while (true) {
           // 随机生成1-10之间的取款金额，调用账户的withdraw方法
-          account.withdraw((int)(Math.random() * 10) + 1);
+          account.withdraw((int) (Math.random() * 10) + 1);
           // 线程休眠1秒，模拟实际应用中的时间间隔
           Thread.sleep(1000);
         }
@@ -63,35 +61,17 @@ public class Test3008 {
     }
   }
 
-  // 银行账户类，内部静态类
   private static class Account {
-    // 创建一个可重入锁对象（当前代码使用synchronized，此锁被注释掉）
-    private static final Lock lock = new ReentrantLock();
 
-    // 创建一个条件对象，用于线程间通信（当前代码使用synchronized，此条件被注释掉）
-    private static Condition newDeposit = lock.newCondition();
-
-    // 账户余额，初始值为0
     private int balance = 0;
 
-    // 获取条件对象的方法（当前代码使用synchronized，此方法被注释掉）
-    public static Condition getNewDeposit() {
-      return newDeposit;
-    }
-
-    // 设置条件对象的方法（当前代码使用synchronized，此方法被注释掉）
-    public static void setNewDeposit(Condition newDeposit) {
-      Account.newDeposit = newDeposit;
-    }
-
-    // 获取账户余额的方法
     public int getBalance() {
       return balance;
     }
 
     // 取款方法，使用synchronized关键字保证线程安全
     public synchronized void withdraw(int amount) {
-//      lock.lock(); // 获取锁（当前代码使用synchronized，此代码被注释掉）
+
       try {
         // 循环检查账户余额是否小于取款金额
         while (balance < amount) {
@@ -103,36 +83,23 @@ public class Test3008 {
         // 余额足够时，执行取款操作
         balance -= amount;
         // 打印取款信息和当前余额
-        System.out.println("\t\t\tWithdraw " + amount +
-                "\t\t" + getBalance());
-      }
-      catch (InterruptedException ex) {  // 捕获中断异常
+        System.out.println("\t\t\tWithdraw " + amount + "\t\t" + getBalance());
+      } catch (InterruptedException ex) {  // 捕获中断异常
         ex.printStackTrace();  // 打印异常堆栈信息
-      }
-      finally {
-//        lock.unlock(); // 释放锁（当前代码使用synchronized，此代码被注释掉）
+      } finally {
       }
     }
 
     // 存款方法，使用synchronized关键字保证线程安全
     public synchronized void deposit(int amount) {
-//      lock.lock(); // 获取锁（当前代码使用synchronized，此代码被注释掉）
       try {
         // 执行存款操作
         balance += amount;
         // 打印存款信息和当前余额
-        System.out.println("Deposit " + amount +
-                "\t\t\t\t\t" + getBalance());
-
-        // 唤醒所有等待该对象锁的线程（使用Condition的方式，当前代码被注释掉）
-//        newDeposit.signalAll();
-        // 唤醒所有等待该对象锁的线程（使用synchronized的方式）
+        System.out.println("Deposit " + amount + "\t\t\t\t\t" + getBalance());
         this.notifyAll();
-      }
-      finally {
-//        lock.unlock(); // 释放锁（当前代码使用synchronized，此代码被注释掉）
+      } finally {
       }
     }
-
   }
 }

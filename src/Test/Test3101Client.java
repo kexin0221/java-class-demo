@@ -21,24 +21,23 @@ public class Test3101Client extends Application {
 	DataInputStream fromServer = null;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		FlowPane fp=new FlowPane();
-		Label rate=new Label("Annual Month Rate");
-		TextField tfRate=new TextField();
-		Label year=new Label("Number of Years");
-		TextField tfYear=new TextField();
-		Button submit=new Button("submit");
-		Label loan=new Label("Loan Amount");
-		TextField tfLoan=new TextField();
+		FlowPane fp = new FlowPane();
+		Label rate = new Label("Annual Month Rate");
+		TextField tfRate = new TextField();
+		Label year = new Label("Number of Years");
+		TextField tfYear = new TextField();
+		Button submit = new Button("submit");
+		Label loan = new Label("Loan Amount");
+		TextField tfLoan = new TextField();
+		TextArea ta = new TextArea();
+		ScrollPane sp = new ScrollPane(ta);
 
-		TextArea ta=new TextArea();
-		ScrollPane sp=new ScrollPane(ta);
-
-		fp.getChildren().addAll(rate,tfRate,year, tfYear,submit,loan,tfLoan,sp);
+		fp.getChildren().addAll(rate, tfRate, year, tfYear, submit, loan, tfLoan, sp);
 		fp.setHgap(10);
 		Scene scene = new Scene(fp,320,250);
 
-		submit.setOnAction(e->{
+		submit.setOnAction(e -> {
+			ta.clear();
 			try {
 				toServer.writeDouble(Double.parseDouble(tfRate.getText()));
 				toServer.flush();
@@ -47,36 +46,28 @@ public class Test3101Client extends Application {
 				toServer.writeDouble(Double.parseDouble(tfLoan.getText()));
 				toServer.flush();
 
-				ta.appendText("Annual Month Rate: "+tfRate.getText()+"\n");
-				ta.appendText("Number of Years: "+tfYear.getText()+"\n");
-				ta.appendText("Loan Amount: "+tfLoan.getText()+"\n");
-				ta.appendText(" Month : "+fromServer.readDouble()+"\n");
-				ta.appendText("total: "+fromServer.readDouble()+"\n");
+				ta.appendText("Annual Month Rate: " + tfRate.getText() + "\n");
+				ta.appendText("Number of Years: " + tfYear.getText() + "\n");
+				ta.appendText("Loan Amount: " + tfLoan.getText() + "\n");
+				ta.appendText("Month : " + fromServer.readDouble() + "\n");
+				ta.appendText("total: " + fromServer.readDouble() + "\n");
 			} catch (NumberFormatException | IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
         });
 
 		try {
 			Socket socket = new Socket("localhost", 8000);
 			fromServer = new DataInputStream(socket.getInputStream());
-
-			// Create an output stream to send data to the server
 			toServer = new DataOutputStream(socket.getOutputStream());
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		primaryStage.setTitle("ShowImage"); // Set the stage title
-		primaryStage.setScene(scene); // Place the scene in the stage
+		primaryStage.setTitle("ShowImage");
+		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		launch(args);
 	}
-
 }

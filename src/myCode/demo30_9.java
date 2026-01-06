@@ -7,9 +7,6 @@ import java.util.Set;
 public class demo30_9 {
     public static void main(String[] args) {
         Set<Integer> set = new HashSet<>();
-        for (int i = 0; i < 5; i++) {
-            set.add(i);
-        }
         Thread t1 = new Thread(() -> {
             try {
                 int count = 5;
@@ -18,7 +15,6 @@ public class demo30_9 {
                     set.add(count++);
                 }
             } catch (InterruptedException ignored) {
-
             }
         });
         Thread t2 = new Thread(() -> {

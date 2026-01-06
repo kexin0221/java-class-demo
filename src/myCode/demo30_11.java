@@ -5,17 +5,17 @@ public class demo30_11 {
     private static final Object lock2 = new Object();
 
     public static void main(String[] args) {
-        Thread t1 = new Thread(() -> {
+        new Thread(() -> {
             synchronized (lock1) {
                 try {
                     Thread.sleep(100);
-                } catch (InterruptedException e) { }
+                } catch (InterruptedException e) {}
                 synchronized (lock2) {
                     System.out.println("Thread1 acquired both locks");
                 }
             }
-        });
-        Thread t2 = new Thread(() -> {
+        }).start();
+        new Thread(() -> {
             synchronized (lock2) {
                 try {
                     Thread.sleep(100);
@@ -24,8 +24,6 @@ public class demo30_11 {
                     System.out.println("Thread2 acquired both locks");
                 }
             }
-        });
-        t1.start();
-        t2.start();
+        }).start();
     }
 }

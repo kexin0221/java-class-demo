@@ -6,8 +6,6 @@ public class Test3011 {
 	static final Object obj2 = new Object();
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Test3011 t = new Test3011();
 		Run1 r1 = new Run1();
 		Run2 r2 = new Run2();
 		new Thread(r1).start();
@@ -22,17 +20,14 @@ public class Test3011 {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-//			}
 				System.out.println("Run1 waits for getting obj2");
 				synchronized (obj2) {
 					try {
 						System.out.println("Run1 get obj2");
 						Thread.sleep(200);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -49,7 +44,6 @@ public class Test3011 {
 					System.out.println("Run2 get obj2");
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -59,7 +53,6 @@ public class Test3011 {
 						System.out.println("Run2 get obj1");
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

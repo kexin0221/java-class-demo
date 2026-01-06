@@ -6,15 +6,13 @@ import java.util.concurrent.RecursiveTask;
 public class Test3015 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		final int N = 9000000;
 		double[] list = new double[N];
 		for (int i = 1; i <= N; i++) {
-			list[i-1] = Math.random() * N;
+			list[i - 1] = Math.random() * N;
 		}
 		long startTime = System.currentTimeMillis();
-		RecursiveTask<Double> task = new SumTask(list,0,list.length);
-//    RecursiveTask<Double> task = new SumTask(list);
+		RecursiveTask<Double> task = new SumTask(list, 0, list.length);
 		ForkJoinPool pool = new ForkJoinPool();
 		System.out.println(pool.invoke(task));
 		long endTime = System.currentTimeMillis();
@@ -28,17 +26,12 @@ public class Test3015 {
 		}
 		endTime = System.currentTimeMillis();
 		System.out.println(sum + " : " + (endTime - startTime) + " milliseconds");
-
 	}
 
 	private static class SumTask extends RecursiveTask<Double> {
         private final double[] list;
-		private int low;
-		private int high;
-
-		public SumTask(double[] list) {
-			this.list=list;
-		}
+		private final int low;
+		private final int high;
 
 		SumTask(double[] list, int low, int high) {
 			this.list = list;
@@ -54,39 +47,14 @@ public class Test3015 {
 					sum = sum + list[i];
 				}
 				return sum;
-			}
-//			 if(list.length<=THRESHOLD)
-//			 {
-//				 double sum=0;
-//				 for(int i=0;i<list.length;i++)
-//				 {
-//					 sum=sum+list[i];
-//				 }
-//				 return sum;
-//			 }
-			else
-			{
-//				 double[] firstHalf = new double[list.length / 2];
-//	        System.arraycopy(list, 0, firstHalf, 0, list.length / 2);
-//
-//	        // Obtain the second half
-//	        int secondHalfLength = list.length - list.length / 2;
-//	        double[] secondHalf = new double[secondHalfLength];
-//	        System.arraycopy(list, list.length / 2,
-//	          secondHalf, 0, secondHalfLength);
-//
-//	        RecursiveTask<Double> left=new SumTask(firstHalf);
-//	        RecursiveTask<Double> right=new SumTask(secondHalf);
+			} else {
 				int mid = (low + high) / 2;
-
-				RecursiveTask<Double> left=new SumTask(list, low, mid);
-
-				RecursiveTask<Double> right=new SumTask(list, mid, high);
+				RecursiveTask<Double> left = new SumTask(list, low, mid);
+				RecursiveTask<Double> right = new SumTask(list, mid, high);
 				left.fork();
 				right.fork();
 				return left.join() + right.join();
 			}
-
 		}
 	}
 }
